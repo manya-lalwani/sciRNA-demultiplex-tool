@@ -46,7 +46,7 @@ def process_RT_batch(batch, exp_rt_barcodes, barcode_length, no_scoring, percent
     batch_warn_rt = []
     batch_obs_rt_start = []
 
-    method_dict = {'corr_pos_corr_match': 0, 'wrong_pos_corr_match': 0, 'one_off': 0, 'two_three_off': 0, 'guess': 0, 'remove': 0}
+    method_dict = {'corr_pos_corr_match': 0, 'wrong_pos_corr_match': 0, 'one_off': 0, 'two_three_off': 0, 'guess': 0, 'removed': 0}
 
     for sequence in batch:
         match_found = False
@@ -80,7 +80,7 @@ def process_RT_batch(batch, exp_rt_barcodes, barcode_length, no_scoring, percent
             batch_obs_rt_start.append(closest_match_start)
             method_dict[method] += 1
 
-    return batch_obs_rt_barcodes, batch_warn_rt, batch_obs_rt_start, method_dict['corr_pos_corr_match'], method_dict['wrong_pos_corr_match'], method_dict['one_off'], method_dict['two_three_off'], method_dict['guess'], method_dict['remove']
+    return batch_obs_rt_barcodes, batch_warn_rt, batch_obs_rt_start, method_dict['corr_pos_corr_match'], method_dict['wrong_pos_corr_match'], method_dict['one_off'], method_dict['two_three_off'], method_dict['guess'], method_dict['removed']
 
 def process_lig_batch(batch, exp_lig_barcodes, barcode_length, no_scoring, percent_guess_to_keep):
     '''Process one dask batch of lig sequences. Check for exact matches in correct place,
@@ -91,7 +91,7 @@ def process_lig_batch(batch, exp_lig_barcodes, barcode_length, no_scoring, perce
     batch_warn_lig = []
     batch_obs_lig_start = []
 
-    method_dict = {'corr_pos_corr_match': 0, 'wrong_pos_corr_match': 0, 'one_off': 0, 'two_three_off': 0, 'guess': 0, 'remove': 0}
+    method_dict = {'corr_pos_corr_match': 0, 'wrong_pos_corr_match': 0, 'one_off': 0, 'two_three_off': 0, 'guess': 0, 'removed': 0}
 
     for sequence in batch:
         match_found = False
@@ -123,7 +123,7 @@ def process_lig_batch(batch, exp_lig_barcodes, barcode_length, no_scoring, perce
             batch_obs_lig_start.append(closest_match_start)
             method_dict[method] += 1
 
-    return batch_obs_lig_barcodes, batch_warn_lig, batch_obs_lig_start, method_dict['corr_pos_corr_match'], method_dict['wrong_pos_corr_match'], method_dict['one_off'], method_dict['two_three_off'], method_dict['guess'], method_dict['remove']
+    return batch_obs_lig_barcodes, batch_warn_lig, batch_obs_lig_start, method_dict['corr_pos_corr_match'], method_dict['wrong_pos_corr_match'], method_dict['one_off'], method_dict['two_three_off'], method_dict['guess'], method_dict['removed']
 
 def convert_to_bool(bool_string):
     '''Converts different representations of true and false to python bool.'''

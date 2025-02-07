@@ -5,36 +5,36 @@ set -a
 
 
 #### input (all fastq files) and output (empty) fastq folders
-input_fastq_folder=/project/zhuzhuzhang/mlalwani/fastqs/inputs_all_lanes
-output_fastq_folder=/project/zhuzhuzhang/mlalwani/fastqs/test_files/output_fastqs_feb7
+input_fastq_folder=/path/to/input_fastq_folder
+output_fastq_folder=/path/to/output_fastq_folder
 
 #### demultiplex tool
-demultiplex_tool_folder='/project/zhuzhuzhang/mlalwani/manya_demultiplex_tool_final'
+demultiplex_tool_folder=/path/to/demultiplex_tool_folder
 
 #### barcode repository paths
-lig_barcode_repo=/project/zhuzhuzhang/mlalwani/manya_demultiplex_tool_final/barcode_repositories/lig_barcodes.txt
-p7_barcode_repo=/project/zhuzhuzhang/mlalwani/manya_demultiplex_tool_final/barcode_repositories/p7_barcodes.txt
-rt_barcode_repo=/project/zhuzhuzhang/mlalwani/manya_demultiplex_tool_final/barcode_repositories/rt_barcodes.txt
+lig_barcode_repo=/path/to/lig_barcode_repo
+p7_barcode_repo=/path/to/p7_barcode_repo
+rt_barcode_repo=/path/to/rt_barcode_repo
 
 #### sbatch parameters (see readme)
-job_name=debug_trial_scalerna
-account="pi-zhuzhuzhang"
-partition=caslake
-short_time_length=00:30:00
-long_time_length=00:30:00
-nodes=2
-mail_type=NONE
-mail_user=mlalwani@rcc.uchicago.edu
-num_cpus=2 # number of CPUs per node to run on
-num_cpus_file_handling=1
+job_name=job_name
+account="account_name"
+partition=partition_name
+short_time_length=00:15:00
+long_time_length=04:00:00
+nodes=4
+mail_type=ALL
+mail_user=email_address@rcc.uchicago.edu
+num_cpus=35 # number of CPUs per node to run on
+num_cpus_file_handling=10
 
 #### parameters (see readme)
 delete_extra=False
 aggregate=True
-fastq_prefix='ScaleRNA' #'ZZ-HC-2s-HC1'
+fastq_prefix='ScaleRNA'
 no_scoring=0 # 0 for scoring/false, 1 for no scoring/true
 chunk=true # lowercase
-max_records_per_chunk=60000 # recommended 500,000
+max_records_per_chunk=500000 # recommended 500,000
 batch_size=1000 # default 1, recommend 1000 for large datasets (1-4000)
 
 num_samples=1
