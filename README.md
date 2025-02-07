@@ -36,8 +36,7 @@ Step-by-step instructions on how to get the project up and running:
 2. Navigate to tool directory:
     ```bash
     cd sciRNA-demultiplex-tool
-3. Install dependencies using conda or pip
-    Dependencies: gzip, pigz, tqdm, numpy, sys, re, os, FileLock, difflib, Cython
+3. Install dependencies using conda or pip (gzip, pigz, tqdm, numpy, sys, re, os, FileLock, difflib, Cython)
     ```bash
     conda install gzip tqdm pigz numpy FileLock Cython
 4. In tool directory, compile Cython code by running
