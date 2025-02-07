@@ -15,7 +15,7 @@ def aggregate_metrics(output_fastq_folder, num_chunks):
     categories = ["RT analysis", "ligation analysis", "P7 analysis"]
     summed_metrics = {category: [] for category in categories}
 
-    text_addition = "\nRT: correct, mispositioned correct, one-off/nearby (correct or 1 place off), two or three-off/nearby, guesses (>3 off, possibly mispositioned), removed (not including removed guesses, # removed guesses = # guesses*((100-warn_threshold)/100) )\nLig: correct, mispositioned correct, one-off/nearby, two or three-off/nearby, guesses (>3 off, possibly mispositioned), removed (not including removed guesses, # guesses = same calculation as RT guesses)\nP7: correct, one or two-off, guesses (more than 2-off) (no records removed due to P7 guesses)"
+    text_addition = "\nRT: correct, mispositioned correct, one-off, two or three-off and nearby (correct or 1 place off), guesses (>3 off, possibly mispositioned), removed (not including removed guesses, # removed guesses = # guesses*((100-warn_threshold)/100) )\nLig: correct, mispositioned correct, one-off, two or three-off and nearby, guesses (>3 off, possibly mispositioned), removed (not including removed guesses, # guesses = same calculation as RT guesses)\nP7: correct, one or two-off, guesses (more than 2-off) (no records removed due to P7 guesses)"
 
     for chunk in range(1, num_chunks+1):
             chunk_metrics = f'{output_fastq_folder}/Chunk_{chunk}/output_fastq_folder/Metrics.txt'
