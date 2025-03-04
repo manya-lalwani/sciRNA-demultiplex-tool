@@ -136,22 +136,22 @@ if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
         python $demultiplex_script_check_inputs $lig_barcode_repo $p7_barcode_repo $rt_barcode_repo $input_fastq_folder $num_samples $num_lanes $r1_sequence_length $umi_start_index $umi_length $fastq_prefix
 
         #### split file
-        # file_types=('R1' 'R2' 'I1')
-        # all_job_ids=""
-        # for file_type in "${file_types[@]}"; do
-        #     job_id=$(submit_sbatch "" "${job_name}_split_files" $partition $account $NUM_NODES $num_cpus_file_handling $long_time_length $mail_type $mail_user "bash" $demultiplex_script_create_chunks $file_type)
-        #     if [ -z "$all_job_ids" ]; then
-        #         all_job_ids="afterok:$job_id"
-        #     else
-        #         all_job_ids="$all_job_ids:$job_id"
-        #     fi
-        # done
+        file_types=('R1' 'R2' 'I1')
+        all_job_ids=""
+        for file_type in "${file_types[@]}"; do
+            job_id=$(submit_sbatch "" "${job_name}_split_files" $partition $account $NUM_NODES $num_cpus_file_handling $long_time_length $mail_type $mail_user "bash" $demultiplex_script_create_chunks $file_type)
+            if [ -z "$all_job_ids" ]; then
+                all_job_ids="afterok:$job_id"
+            else
+                all_job_ids="$all_job_ids:$job_id"
+            fi
+        done
 
-        # num_chunks=-1
-        # submit_sbatch "$all_job_ids" "${job_name}_change_folder_names" $partition $account $NUM_NODES $NUM_CPUS_SHORT $short_time_length $mail_type $mail_user "bash" $demultiplex_script_change_names
+        num_chunks=-1
+        submit_sbatch "$all_job_ids" "${job_name}_change_folder_names" $partition $account $NUM_NODES $NUM_CPUS_SHORT $short_time_length $mail_type $mail_user "bash" $demultiplex_script_change_names
 
         #### get out number of chunks and calculate chunks per node
-        # sleep 1000
+        sleep 1000 # for long files
         temp_file=false
         while [[ "$temp_file" == false ]]; do
             if [[ -f "${output_fastq_folder}/num_chunks.txt" ]]; then
